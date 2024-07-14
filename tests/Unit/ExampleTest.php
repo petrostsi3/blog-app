@@ -57,6 +57,9 @@ class ExampleTest extends TestCase
             'author_id' => $user->id,
         ]);
 
+        // Reload the post to ensure it's not null
+        $post->load('author');
+
         $this->assertEquals($user->id, $post->author->id);
     }
 

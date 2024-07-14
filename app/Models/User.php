@@ -41,7 +41,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
     ];
 
 
@@ -52,6 +51,5 @@ class User extends Authenticatable
         {
             return $this->hasMany(Post::class, 'author_id');
         }
-
     
 }

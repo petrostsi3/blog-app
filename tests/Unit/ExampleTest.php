@@ -76,7 +76,7 @@ class ExampleTest extends TestCase
 
         $response = $this->get(route('user.posts',$user->id));
 
-        $response->assertStatus(500);
+        $response->assertStatus(200);
         $response->assertSee($posts->first()->title);
     }
 

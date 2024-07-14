@@ -71,7 +71,7 @@ class ExampleTest extends TestCase
 
         // add posts to the user
         $posts = Post::factory(5)->create([
-            'user_id' => $user->id,
+            'author_id' => $user->id,
         ]);
 
         $response = $this->get(route('user.posts',$user->id));

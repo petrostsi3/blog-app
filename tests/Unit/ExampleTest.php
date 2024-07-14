@@ -57,6 +57,13 @@ class ExampleTest extends TestCase
             'author_id' => $user->id,
         ]);
 
+        $post = $post->fresh('author');
+
+        // Debugging: Check if the author is loaded correctly
+        if ($post->author === null) {
+            $this->fail('Post author relationship not loaded correctly.');
+        }
+
         $this->assertEquals($user->id, $post->author->id);
     }
 

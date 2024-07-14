@@ -36,9 +36,9 @@ class ExampleTest extends TestCase
 
         // user refreshing - in order that the user instance is reloaded , after post creation
         $user->refresh();
-
+        $user->load('posts');
         
-        $this->assertEquals(5,$user->posts->count());
+        $this->assertEquals(5, $user->posts->count());
     }
 
     /**

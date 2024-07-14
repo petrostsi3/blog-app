@@ -11,12 +11,12 @@ class UserPostController extends Controller
 
 
     // Debug test3
-    public function showPosts($id)
+    public function posts($id)
     {
-        
-        $posts = Post::where('user_id', $id)->get();
+        $user = User::findOrFail($id);
+        $posts = $user->posts;
 
-        return view('user.posts', ['posts' => $posts]);
+        return view('user.posts', compact('user', 'posts'));
     }
 
     public function index($userId){

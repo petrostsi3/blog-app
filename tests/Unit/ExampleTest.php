@@ -57,7 +57,7 @@ class ExampleTest extends TestCase
             'author_id' => $user->id,
         ]);
 
-        $this->optional(assertEquals($user->id, $post->author->id));
+        $this->assertEquals(optional($user->id, $post->author->id));
     }
 
     /** @test */

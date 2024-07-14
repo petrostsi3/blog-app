@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 class UserPostController extends Controller
 {
 
+
+    // Debug test3
+    public function showPosts($id)
+    {
+        
+        $posts = Post::where('user_id', $id)->get();
+
+        return view('user.posts', ['posts' => $posts]);
+    }
+
     public function index($userId){
         $user = User::findOrFail($userId);
 

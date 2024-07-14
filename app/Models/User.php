@@ -12,17 +12,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-
-    /**
-         * Get the posts for the user.
-         */
-        public function posts()
-        {
-            return $this->hasMany(Post::class, 'author_id');
-        }
-    }
-
-
     
     /**
      * The attributes that are mass assignable.
@@ -52,6 +41,18 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'password' => 'hashed',
     ];
 
+
+    /**
+         * Get the posts for the user.
+         */
+        public function posts()
+        {
+            return $this->hasMany(Post::class, 'author_id');
+        }
+    }
+
+    
 }

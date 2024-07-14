@@ -22,5 +22,3 @@ Route::get('posts/{slug}',[\App\Http\Controllers\PostController::class,'view'])-
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Debug test3
-Route::get('/user/{user}/posts', [PostController::class, 'index'])->name('user.posts');

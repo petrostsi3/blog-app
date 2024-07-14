@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,6 @@ Route::get('/',[\App\Http\Controllers\PostController::class,'index'])->name('ind
 Route::get('posts/{slug}',[\App\Http\Controllers\PostController::class,'view'])->name('post.view');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Debug test3
+Route::get('/user/{id}/posts', [UserPostController::class, 'showPosts'])->name('user.posts');

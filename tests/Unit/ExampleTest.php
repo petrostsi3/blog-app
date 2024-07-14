@@ -70,8 +70,8 @@ class ExampleTest extends TestCase
         $user = User::factory()->create();
 
         // add posts to the user
-        $posts = Post::factory()->count(3)->create([
-            'user_id' => $user->id,
+        $posts = Post::factory(5)->create([
+            'author_id' => $user->id,
         ]);
 
         $response = $this->get(route('user.posts',$user->id));

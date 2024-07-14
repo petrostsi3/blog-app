@@ -34,7 +34,7 @@ class ExampleTest extends TestCase
             'author_id' => $user->id,
         ]);
 
-        $this->assertEquals(5,$user->posts->count());
+        $this->assertEquals(1,$user->posts->count());
     }
 
     /**

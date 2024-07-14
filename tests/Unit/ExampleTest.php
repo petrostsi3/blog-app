@@ -84,29 +84,28 @@ class ExampleTest extends TestCase
         $response->assertSee($posts->first()->title);
     }
 
-    public function task_4_assert_not_too_many_queries()
-{
-    // Create a new user
-    $user = User::factory()->create();
+    public function task_4_assert_not_too_many_queries(){
 
-    // Add posts to the user
-    Post::factory(10)->create([
-        'author_id' => $user->id,
-    ]);
+        // create new user
+        $user = User::factory()->create();
+
+        // add posts to the user
+        Post::factory(10)->create([
+            'author_id' => $user->id,
+        ]);
+
+        // enables database query logging
+        
+        DB::enableQueryLog();
+
+        $response = $this->get(route('index'));
+        $response->assertStatus(200);
 
 
-    DB::enableQueryLog();
+        // expect 10 posts
+        $this->assertCount(10,$response->getOriginalContent()->getData()['posts']);
 
-    $response = $this->get(route('index'));
-    $response->assertStatus(200);
-
-    $posts = $response->getOriginalContent()->getData()['posts'];
-    $this->assertCount(10, $posts);
-
-    $queries = DB::getQueryLog();
-
-    $this->assertCount(3, $queries);
-
-    DB::flushQueryLog();
-}
+        // expect 3 queries
+        $this->assertCount(3,DB::getQueryLog());
+    }
 }

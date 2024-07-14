@@ -34,7 +34,11 @@ class ExampleTest extends TestCase
             'author_id' => $user->id,
         ]);
 
-        $this->assertEquals(1,$user->posts->count());
+        // user refreshing - in order that the user instance is reloaded , after post creation
+        $user->refresh();
+
+        
+        $this->assertEquals(5,$user->posts->count());
     }
 
     /**
@@ -67,7 +71,7 @@ class ExampleTest extends TestCase
             'author_id' => $user->id,
         ]);
 
-        $response = $this->call('GET',route('user.posts',$user->id));
+        $response = $this->get(route('user.posts',$user->id));
 
         $response->assertStatus(200);
         $response->assertSee($posts->first()->title);
@@ -85,10 +89,10 @@ class ExampleTest extends TestCase
         ]);
 
         // enables database query logging
-        DB::flushQueryLog();
+        
         DB::enableQueryLog();
 
-        $response = $this->call('GET',route('index'));
+        $response = $this->get(route('index'));
         $response->assertStatus(200);
 
 
